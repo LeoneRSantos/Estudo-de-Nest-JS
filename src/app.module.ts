@@ -9,7 +9,8 @@ import { UsersService } from './user/user.service';
 import { PostsService } from './post/post.service';
 
 @Module({
-  imports: [AuthModule, UserModule],
-  controllers: [UserController],
+  imports: [AuthModule, UserModule, DatabaseModule, PostModule, UserModule],
+  controllers: [UserController, AppController],
+  providers: [UsersService, PostsService]
 })
 export class AppModule { }
