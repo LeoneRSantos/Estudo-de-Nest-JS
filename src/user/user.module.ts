@@ -5,6 +5,7 @@ import { Prisma } from 'src/generated/prisma/client';
 import { DatabaseModule } from 'src/database/database.module';
 
 @Module({
+  imports: [DatabaseModule],
   controllers: [UserController],
   providers: [UserService]
 })
