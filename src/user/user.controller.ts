@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 
 @Controller('user')
 export class UserController {
