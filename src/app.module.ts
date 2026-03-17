@@ -10,7 +10,7 @@ import { PostsService } from './post/post.service';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [AuthModule, UserModule, DatabaseModule, PostModule, UserModule],
+  imports: [AuthModule, UserModule, DatabaseModule, PostModule, UserModule, ConfigModule.forRoot({ isGlobal: true })],
   controllers: [UserController, AppController],
   providers: [UsersService, PostsService]
 })
