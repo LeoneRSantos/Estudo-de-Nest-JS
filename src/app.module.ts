@@ -7,6 +7,7 @@ import { PostModule } from './post/post.module';
 import { AppController } from './app/app.controller';
 import { UsersService } from './user/user.service';
 import { PostsService } from './post/post.service';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [AuthModule, UserModule, DatabaseModule, PostModule, UserModule],
