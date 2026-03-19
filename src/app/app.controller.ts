@@ -67,7 +67,12 @@ export class AppController {
     async signupUser(
         @Body() userData: { name: string; email: string, password: string },
     ): Promise<UserModel> {
-        return this.userService.createUser(userData);
+
+        const result = await this.userService.createUser(userData);
+        if ('message' in result) {
+            throw new Error(result.message);
+        }
+        return result;
     }
 
     @Put('publish/:id')
