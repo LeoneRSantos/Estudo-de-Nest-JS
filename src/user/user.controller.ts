@@ -1,5 +1,7 @@
 import { Body, Controller, Get } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
+import { UserModel } from 'src/generated/prisma/models';
+import { UsersService } from './user.service';
 
 @Controller('usuario')
 export class UserController {
