@@ -19,7 +19,7 @@ export class UserController {
 
 
     @Get('lista-de-usuarios')
-    listarUsuarios(): String {
-        return 'Lista de usuários';
+    async listarUsuarios(): Promise<UserModel[]> {
+        return this.userService.users({});
     }
 }
