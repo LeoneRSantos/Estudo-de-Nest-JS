@@ -5,6 +5,9 @@ import { UsersService } from './user.service';
 
 @Controller('usuario')
 export class UserController {
+    constructor(
+        private readonly userService: UsersService
+    ) { }
 
     @Get('criptografia-teste')
     async encpritacaoTeste(@Body() dado: { senha: string },): Promise<any> {
