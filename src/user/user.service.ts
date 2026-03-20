@@ -63,17 +63,17 @@ export class UsersService {
 
     async createUser(data: Prisma.UserCreateInput): Promise<User | { message: string }> {
 
-        const hash = await bcrypt.hash(data.password, 10);
-        const evalida = await bcrypt.compare(data.password, hash);
-        const listadeUsuarios = await this.users({});
-        const emailExiste = listadeUsuarios.some(user => user.email === data.email);
+        const evalida = await this.validarSenha(data.password);
+        // const evalida = await bcrypt.compare(data.password, hash);
+        const emailExiste = await this.validarEmail(data.email);
 
-        if (evalida) {
+        if ("hash" in evalida) {
             try {
-                if (emailExiste) {
-                    throw new InternalServerErrorException("Email já cadastrado");
+                if ("message" in emailExiste) {
+                    throw new InternalServerErrorException(emailExiste.message);
+
                 }
-                data.password = hash;
+                data.password = evalida.hash;
                 return this.prisma.user.create({
                     data,
                 });
