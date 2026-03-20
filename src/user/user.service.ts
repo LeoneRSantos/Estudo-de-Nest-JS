@@ -32,6 +32,15 @@ export class UsersService {
         });
     }
 
+    async validarSenha(senha: string): Promise<{ hash: string } | { message: string }> {
+        if (senha.length >= 6) {
+            const hash = await bcrypt.hash(senha, 10);
+
+            return { hash };
+        }
+        return { message: "Senha inválida" };
+    }
+
     async createUser(data: Prisma.UserCreateInput): Promise<User | { message: string }> {
 
         const hash = await bcrypt.hash(data.password, 10);
