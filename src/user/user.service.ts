@@ -42,6 +42,25 @@ export class UsersService {
         return { message: "Senha inválida" };
     }
 
+    async validarEmail(emailRecebido: string, id?: number): Promise<{ email: string } | { message: string }> {
+        const listadeUsuarios = await this.users({});
+        const emailExiste = listadeUsuarios.some(user => user.email === emailRecebido);
+        const usuarioAtual = listadeUsuarios.find(user => user.id === id);
+        if (emailExiste) {
+            if (usuarioAtual?.id === id) {
+
+                return { email: emailRecebido };
+            }
+
+            return { message: "Este email já pertence a outro usuário." };
+        }
+        if (!emailRecebido.includes('@')) {
+
+            return { message: "Email inválido" };
+        }
+        return { email: emailRecebido };
+    }
+
     async createUser(data: Prisma.UserCreateInput): Promise<User | { message: string }> {
 
         const hash = await bcrypt.hash(data.password, 10);
