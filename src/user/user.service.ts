@@ -32,10 +32,30 @@ export class UsersService {
         });
     }
 
-    async createUser(data: Prisma.UserCreateInput): Promise<User> {
-        return this.prisma.user.create({
-            data,
-        });
+    async createUser(data: Prisma.UserCreateInput): Promise<User | { message: string }> {
+
+        const hash = await bcrypt.hash(data.password, 10);
+        const evalida = await bcrypt.compare(data.password, hash);
+        const listadeUsuarios = await this.users({});
+        const emailExiste = listadeUsuarios.some(user => user.email === data.email);
+
+        if (evalida) {
+            try {
+                if (emailExiste) {
+                    throw new InternalServerErrorException("Email já cadastrado");
+                }
+                data.password = hash;
+                return this.prisma.user.create({
+                    data,
+                });
+            } catch (error) {
+                return { message: "Erro ao criar o usuário" };
+            }
+
+        } else {
+
+            return { message: "Senha invalida" };
+        }
     }
 
     async updateUser(params: {
