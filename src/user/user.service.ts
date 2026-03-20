@@ -92,6 +92,18 @@ export class UsersService {
         data: Prisma.UserUpdateInput;
     }): Promise<User> {
         const { where, data } = params;
+        const emailAVerificar = await this.validarEmail(data.email as string, Number(where.id));
+        const senhaAVerificar = await this.validarSenha(data.password as string);
+        if ("message" in senhaAVerificar) {
+            throw new InternalServerErrorException(senhaAVerificar.message);
+        }
+        if ("message" in emailAVerificar) {
+            throw new InternalServerErrorException(emailAVerificar.message);
+        }
+        data.email = emailAVerificar.email;
+        data.password = senhaAVerificar.hash;
+
+
         return this.prisma.user.update({
             data,
             where,
