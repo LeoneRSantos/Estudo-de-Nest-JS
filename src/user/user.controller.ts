@@ -1,4 +1,4 @@
-import { Body, Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Param, Put } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { UserModel } from 'src/generated/prisma/models';
 import { UsersService } from './user.service';
