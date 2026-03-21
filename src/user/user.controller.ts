@@ -22,4 +22,9 @@ export class UserController {
     async listarUsuarios(): Promise<UserModel[]> {
         return this.userService.users({});
     }
+
+    @Put('atualizar-usuario/:id')
+    async atualizarUsuario(@Param('id') id: string, @Body() dados: { name: string, email: string, password: string }): Promise<UserModel> {
+        return this.userService.updateUser({ where: { id: Number(id) }, data: dados });
+    }
 }
