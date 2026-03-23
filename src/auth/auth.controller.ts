@@ -3,4 +3,11 @@ import { AuthService } from './auth.service';
 import type { UserLoginInput } from 'src/generated/prisma/models';
 
 @Controller('auth')
-export class AuthController {}
+export class AuthController {
+    constructor(private auth: AuthService) { }
+
+    @Post('login')
+    async login(@Body() dadosEnviados: UserLoginInput) {
+        return this.auth.login(dadosEnviados);
+    }
+}
