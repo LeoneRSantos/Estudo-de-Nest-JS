@@ -8,4 +8,4 @@ import { PrismaService } from 'src/database/prisma/prisma.service';
   controllers: [AuthController],
   providers: [AuthService, UsersService, PrismaService]
 })
-export class AuthModule {}
+export class AuthModule { }
