@@ -2,34 +2,29 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
 import type { UserLoginInput } from 'src/generated/prisma/models';
+import { JwtService } from '@nestjs/jwt';
+
 
 @Injectable()
 export class AuthService {
-    constructor(private prisma: PrismaService) { }
+    constructor(private prisma: PrismaService, private jwtService: JwtService) { }
 
     async login(dados: UserLoginInput): Promise<{ message: string } | { token: string }> {
         const usuario = await this.prisma.user.findUnique({
             where: { email: dados.email },
         });
+
         if (!usuario) {
             return { message: "Usuário não encontrado" };
         }
-        const senhaHash = await bcrypt.compare(dados.password, usuario.password);
 
-        if (senhaHash) {
-            const senhaValida = await this.prisma.user.findFirst({
-                where: { email: dados.email, password: usuario.password },
-            });
+        const senhaValida = await bcrypt.compare(dados.password, usuario.password);
 
-            return { token: `Usuário ${senhaValida?.name} autenticado com sucesso! \n${JSON.stringify(senhaValida)}` };
-
-        }
-
-        if (!senhaHash) {
+        if (!senhaValida) {
             return { message: "Senha inválida" };
         }
 
-        return { token: "Usuário autenticado com sucesso." };
-
+        const payload = { sub: usuario.id, username: usuario.name };
+        return { token: await this.jwtService.signAsync(payload) };
     }
 }
