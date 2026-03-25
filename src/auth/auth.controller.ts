@@ -1,6 +1,7 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards, Request } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import type { UserLoginInput } from 'src/generated/prisma/models';
+import { AuthGuard } from './auth.guard';
 
 @Controller('auth')
 export class AuthController {
