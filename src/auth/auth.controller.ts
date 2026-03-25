@@ -7,6 +7,7 @@ import { AuthGuard } from './auth.guard';
 export class AuthController {
     constructor(private auth: AuthService) { }
 
+    @HttpCode(HttpStatus.OK)
     @Post('login')
     async login(@Body() dadosEnviados: UserLoginInput) {
         return this.auth.login(dadosEnviados);
