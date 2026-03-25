@@ -12,4 +12,10 @@ export class AuthController {
     async login(@Body() dadosEnviados: UserLoginInput) {
         return this.auth.login(dadosEnviados);
     }
+
+    @UseGuards(AuthGuard)
+    @Get('profile')
+    getProfile(@Request() req) {
+        return req.user;
+    }
 }
