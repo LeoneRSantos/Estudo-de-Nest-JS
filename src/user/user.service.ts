@@ -111,10 +111,23 @@ export class UsersService {
         });
     }
 
-    async deleteUser(where: Prisma.UserWhereUniqueInput): Promise<User> {
-        return this.prisma.user.delete({
-            where,
-        });
+    async deleteUser(where: Prisma.UserWhereUniqueInput): Promise<UserDeletedOutput> {
+        if (!where) {
+            throw new InternalServerErrorException("O ID do usuário não foi identificado.");
+        }
+        try {
+            const usuarioDeletado = await this.prisma.user.delete({
+                where,
+            })
+            return {
+                id: usuarioDeletado.id,
+                name: usuarioDeletado.name,
+                email: usuarioDeletado.email
+            };
+        } catch (InternalServerError) {
+            throw new InternalServerErrorException("Erro ao deletar o usuário");
+        }
+        ;
     }
 }
 
