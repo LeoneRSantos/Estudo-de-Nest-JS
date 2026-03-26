@@ -3,6 +3,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { PrismaService } from '../database/prisma/prisma.service';
 import { User, Prisma } from '../generated/prisma/client';
 import * as bcrypt from 'bcrypt';
+import { UserDeletedOutput } from 'src/generated/prisma/models';
 
 @Injectable()
 export class UsersService {
