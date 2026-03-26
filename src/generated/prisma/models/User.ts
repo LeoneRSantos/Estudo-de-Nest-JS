@@ -31,6 +31,12 @@ export type UserLoginInput = {
   password: string
 }
 
+export type UserDeletedOutput = {
+  id: number,
+  name: string,
+  email: string,
+}
+
 export type UserAvgAggregateOutputType = {
   id: number | null
 }
