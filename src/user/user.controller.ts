@@ -27,4 +27,11 @@ export class UserController {
     async atualizarUsuario(@Param('id') id: string, @Body() dados: { name: string, email: string, password: string }): Promise<UserModel> {
         return this.userService.updateUser({ where: { id: Number(id) }, data: dados });
     }
+
+    @Delete('deletar-usuario/:id')
+    async deletarUsuario(@Param('id') idUsuario: string): Promise<UserDeletedOutput> {
+
+        return this.userService.deleteUser({ id: Number(idUsuario) });
+    }
+
 }
