@@ -2,6 +2,8 @@ import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards, Request }
 import { AuthService } from './auth.service';
 import type { UserLoginInput } from 'src/generated/prisma/models';
 import { AuthGuard } from './auth.guard';
+import { LocalAuthGuard } from './passport.local.guard';
+import { LocalStrategy } from './local.strategy';
 
 @Controller('auth')
 export class AuthController {
