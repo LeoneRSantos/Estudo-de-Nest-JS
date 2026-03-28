@@ -20,4 +20,19 @@ export class AuthController {
     getProfile(@Request() req) {
         return req.user;
     }
+
+    // Login com Passport
+    @Post('login-passport')
+    async loginPassport(@Body() dadosEnviados: UserLoginInput) {
+        return this.passportLocal.validate(dadosEnviados);
+    }
+
+    // Logout com Passport
+    @UseGuards(LocalAuthGuard)
+    @Post('logout-passport')
+    async logoutPassport(@Request() req) {
+        return req.logout();
+    }
+
+
 }
