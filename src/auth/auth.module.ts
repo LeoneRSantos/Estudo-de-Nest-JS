@@ -14,7 +14,7 @@ import { LocalStrategy } from './local.strategy';
     global: true,
     secret: jwtConstants.secret,
     signOptions: { expiresIn: '60s' },
-  }),],
+  })],
 })
 export class AuthModule { }
 
