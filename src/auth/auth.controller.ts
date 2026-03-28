@@ -7,7 +7,7 @@ import { LocalStrategy } from './local.strategy';
 
 @Controller('auth')
 export class AuthController {
-    constructor(private auth: AuthService) { }
+    constructor(private auth: AuthService, private passportLocal: LocalStrategy) { }
 
     @HttpCode(HttpStatus.OK)
     @Post('login')
