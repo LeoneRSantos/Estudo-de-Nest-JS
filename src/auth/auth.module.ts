@@ -9,7 +9,7 @@ import { LocalStrategy } from './local.strategy';
 
 @Module({
   controllers: [AuthController],
-  providers: [AuthService, UsersService, PrismaService],
+  providers: [AuthService, UsersService, PrismaService, LocalStrategy],
   imports: [JwtModule.register({
     global: true,
     secret: jwtConstants.secret,
