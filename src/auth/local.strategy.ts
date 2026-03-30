@@ -14,7 +14,9 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     }
 
 
-    async validate(dados: { email: string, password: string }): Promise<{ message: string }> {
+    async validate(dados: { email: string, password: string }): Promise<{
+        message: string
+    } | { token: string }> {
 
         const usuario = await this.prisma.user.findUnique({
             where: { email: dados.email },
