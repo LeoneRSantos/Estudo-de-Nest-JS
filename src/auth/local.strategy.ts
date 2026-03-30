@@ -26,6 +26,13 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
             return { message: "Usuário não encontrado" };
         }
 
-        return { message: `Login do usuário ${usuario.name}` };
+        const senhaValida = await bcrypt.compare(dados.password, usuario.password);
+
+        if (!senhaValida) {
+            return { message: "Senha inválida" };
+        }
+        const payload = { username: usuario.email, sub: usuario.id };
+
+        return { token: await this.jwtService.sign(payload) };
     }
 }
