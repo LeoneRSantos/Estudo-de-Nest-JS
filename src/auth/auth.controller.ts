@@ -22,6 +22,7 @@ export class AuthController {
     }
 
     // Login com Passport
+    @HttpCode(HttpStatus.OK)
     @Post('login-passport')
     async loginPassport(@Body() dadosEnviados: UserLoginInput) {
         return this.passportLocal.validate(dadosEnviados);
