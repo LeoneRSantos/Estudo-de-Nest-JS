@@ -9,7 +9,7 @@ import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
-    constructor(private authService: AuthService, private prisma: PrismaService) {
+    constructor(private jwtService: JwtService, private prisma: PrismaService) {
         super();
     }
 
