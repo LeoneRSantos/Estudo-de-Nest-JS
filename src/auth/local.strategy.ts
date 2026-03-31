@@ -32,6 +32,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
         }
         const payload = { username: usuario.email, sub: usuario.id };
 
-        return { token: await this.jwtService.sign(payload) };
+        return { token: this.jwtService.sign(payload) };
     }
 }
