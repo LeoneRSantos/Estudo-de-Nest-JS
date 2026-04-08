@@ -28,6 +28,7 @@ describe('UserController', () => {
     }).compile();
 
     controller = module.get<UserController>(UserController);
+    mockUsersService = module.get(UsersService);
   });
 
   it('should be defined', () => {
