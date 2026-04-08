@@ -14,7 +14,16 @@ describe('UserService', () => {
     service = module.get<UsersService>(UsersService);
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+
+  it('Deve ser possível validar uma senha', async () => {
+    const senha = "12345678910";
+    const resultado = await service.validarSenha(senha);
+    expect(resultado).toHaveProperty('hash');
   });
+
+  it('Deve ser possível retornar uma mensagem para senha inválida', async () => {
+    const senha = "1234";
+    const resultado = await service.validarSenha(senha);
+    expect(resultado).toHaveProperty('message');
+  })
 });
