@@ -31,7 +31,9 @@ describe('UserController', () => {
     mockUsersService = module.get(UsersService);
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
+  it('Deve ser possível retornar a lista de usuários', async () => {
+    const usuarios = await controller.listarUsuarios();
+    expect(usuarios).toBeInstanceOf(Array);
+    expect(mockUsersService.users).toHaveBeenCalledWith({}); // Verifica se o método foi chamado
   });
 });
