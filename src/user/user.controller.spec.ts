@@ -20,6 +20,11 @@ describe('UserController', () => {
 
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UserController],
+      providers: [
+        { provide: UsersService, useValue: mockUsersServiceValue },
+        { provide: ConfigService, useValue: mockConfigServiceValue },
+        // PrismaService pode ser omitido se não for diretamente usado no controller
+      ],
     }).compile();
 
     controller = module.get<UserController>(UserController);
