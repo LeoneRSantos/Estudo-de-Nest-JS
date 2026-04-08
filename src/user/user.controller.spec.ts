@@ -5,8 +5,19 @@ import { UsersService } from './user.service';
 
 describe('UserController', () => {
   let controller: UserController;
+  let mockUsersService: jest.Mocked<UsersService>;
 
   beforeEach(async () => {
+    // Mock do UsersService
+    const mockUsersServiceValue = {
+      users: jest.fn().mockResolvedValue([]), // Simula retorno de array vazio
+    };
+
+    // Mock do ConfigService (se necessário para Prisma)
+    const mockConfigServiceValue = {
+      get: jest.fn().mockReturnValue('mocked-db-url'), // Simula DATABASE_URL
+    };
+
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UserController],
     }).compile();
