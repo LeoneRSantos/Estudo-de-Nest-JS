@@ -43,10 +43,10 @@ export class UsersService {
         return { message: "Senha inválida" };
     }
 
-    async validarEmail(emailRecebido: string, id?: number): Promise<{ email: string } | { message: string }> {
+    async verificarSeOEmailJaExiste(emailaprocurar: string): Promise<User | boolean> {
         const listadeUsuarios = await this.users({});
-        const emailExiste = listadeUsuarios.some(user => user.email === emailRecebido);
-        const usuarioAtual = listadeUsuarios.find(user => user.id === id);
+        const emailExiste = listadeUsuarios.find(user => user.email === emailaprocurar);
+
         if (emailExiste) {
             if (usuarioAtual?.id === id) {
 
