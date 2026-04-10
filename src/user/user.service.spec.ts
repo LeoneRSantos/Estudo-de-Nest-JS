@@ -41,8 +41,8 @@ describe('UserService', () => {
     jest.spyOn(service, 'users').mockResolvedValue([]);
 
     const emailValido = 'usuario@emailvalido.com';
-    const resultado = await service.validarEmail(emailValido);
-    expect(resultado).toEqual({ email: emailValido });
+    const resultado = await service.verificarSeOEmailJaExiste(emailValido);
+    expect(resultado).toEqual(false);
   });
 
   it('Deve retornar mensagem para e-mail existente de outro usuário', async () => {
