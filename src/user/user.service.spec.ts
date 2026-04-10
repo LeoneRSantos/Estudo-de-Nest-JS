@@ -54,7 +54,7 @@ describe('UserService', () => {
     jest.spyOn(prismaService.user, 'findMany').mockResolvedValueOnce(mockUsers as any);
 
     const emailExistente = 'usuario@emailvalido.com';
-    const resultado = await service.validarEmail(emailExistente);
+    const resultado = await service.verificarSeOEmailJaExiste(emailExistente);
     console.log(resultado);
 
     expect(resultado).toEqual({ message: "Este email já pertence a outro usuário." });
