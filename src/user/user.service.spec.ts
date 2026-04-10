@@ -83,14 +83,14 @@ describe('UserService', () => {
 
 
   it('Deve ser possível validar uma senha', async () => {
-    const senha = "12345678910";
+    const senha = '12345678910';
     const resultado = await service.validarSenha(senha);
     expect(resultado).toHaveProperty('hash');
   });
 
   it('Deve ser possível retornar uma mensagem para senha inválida', async () => {
-    const senha = "1234";
+    const senha = '1234';
     const resultado = await service.validarSenha(senha);
     expect(resultado).toHaveProperty('message');
-  })
+  });
 });
