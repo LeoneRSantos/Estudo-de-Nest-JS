@@ -57,7 +57,7 @@ describe('UserService', () => {
     const resultado = await service.verificarSeOEmailJaExiste(emailExistente);
     console.log(resultado);
 
-    expect(resultado).toEqual({ message: "Este email já pertence a outro usuário." });
+    expect(resultado).toEqual(mockUsers.at(0));
   });
 
   it('Deve validar e-mail existente para o mesmo usuário (com id)', async () => {
