@@ -6,6 +6,19 @@ import { User } from '../generated/prisma/client';
 
 describe('UserService', () => {
   let service: UsersService;
+  let prismaService: PrismaService;
+
+  // Mock do PrismaService
+  const mockPrismaService = {
+    user: {
+      findMany: jest.fn(),
+    },
+  };
+
+  // Mock do ConfigService
+  const mockConfigService = {
+    get: jest.fn().mockReturnValue('mocked-db-url'),
+  };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
