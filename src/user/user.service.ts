@@ -48,13 +48,20 @@ export class UsersService {
         const emailExiste = listadeUsuarios.find(user => user.email === emailaprocurar);
 
         if (emailExiste) {
-            if (usuarioAtual?.id === id) {
+            return emailExiste;
+        }
+        return false;
+    }
 
+    async validarEmail(emailRecebido: string, id?: number): Promise<{ email: string } | { message: string }> {
+
+        const alguemjatemesseamail = await this.verificarSeOEmailJaExiste(emailRecebido);
+        if (alguemjatemesseamail && typeof alguemjatemesseamail === 'object') {
+            if (alguemjatemesseamail.id === id) {
                 return { email: emailRecebido };
             }
-
-            return { message: "Este email já pertence a outro usuário." };
         }
+
         if (!emailRecebido.includes('@')) {
 
             return { message: "Email inválido" };
