@@ -1,6 +1,6 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards, Request } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import type { UserLoginInput } from 'src/generated/prisma/models';
+import type { UserLoginInput } from '../generated/prisma/models';
 import { AuthGuard } from './auth.guard';
 import { LocalAuthGuard } from './passport.local.guard';
 import { LocalStrategy } from './local.strategy';
