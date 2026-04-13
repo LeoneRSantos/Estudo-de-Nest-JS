@@ -17,6 +17,11 @@ describe('AppController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
+      providers: [
+        UsersService,
+        PostsService,
+        { provide: PrismaService, useValue: mockPrismaService },
+      ],
     }).compile();
 
     controller = module.get<AppController>(AppController);
