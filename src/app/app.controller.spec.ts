@@ -7,6 +7,13 @@ import { PostsService } from '../post/post.service';
 describe('AppController', () => {
   let controller: AppController;
 
+  // Mock do PrismaService
+  const mockPrismaService = {
+    user: {
+      findMany: jest.fn(),
+    },
+  };
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
