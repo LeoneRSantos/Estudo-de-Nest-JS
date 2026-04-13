@@ -47,10 +47,7 @@ export class UsersService {
         const listadeUsuarios = await this.users({});
         const emailExiste = listadeUsuarios.find(user => user.email === emailaprocurar);
 
-        if (emailExiste) {
-            return emailExiste;
-        }
-        return false;
+        return emailExiste ? emailExiste : false;
     }
 
     async validarEmail(emailRecebido: string, id?: number): Promise<{ email: string } | { message: string }> {
