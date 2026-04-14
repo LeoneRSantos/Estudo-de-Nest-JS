@@ -26,6 +26,10 @@ describe('AuthController', () => {
 
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AuthController],
+      providers: [JwtService, AuthService, LocalStrategy, UsersService,
+        { provide: PrismaService, useValue: mockPrismaService },
+        { provide: ConfigService, useValue: mockConfigServiceValue }
+      ],
     }).compile();
 
     controller = module.get<AuthController>(AuthController);
