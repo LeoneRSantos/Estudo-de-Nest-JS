@@ -1,5 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
+import { PrismaService } from '../database/prisma/prisma.service';
+import { JwtService } from '@nestjs/jwt';
+import { LocalStrategy } from './local.strategy';
+import { ConfigService } from '@nestjs/config';
 
 describe('AuthService', () => {
   let service: AuthService;
