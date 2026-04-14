@@ -33,6 +33,7 @@ describe('AuthController', () => {
     }).compile();
 
     controller = module.get<AuthController>(AuthController);
+    mockUsersService = module.get(UsersService);
   });
 
   it('should be defined', () => {
