@@ -1,6 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
-import { beforeEach, describe, it } from 'node:test';
+import { describe, it, beforeEach, expect, jest } from '@jest/globals';
+import { JwtService } from '@nestjs/jwt';
+import { AuthService } from './auth.service';
+import { PrismaService } from '../database/prisma/prisma.service';
+import { LocalStrategy } from './local.strategy';
+import { ConfigService } from '@nestjs/config';
+import { UsersService } from '../user/user.service';
 
 describe('AuthController', () => {
   let controller: AuthController;
