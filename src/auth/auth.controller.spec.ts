@@ -10,6 +10,7 @@ import { UsersService } from '../user/user.service';
 
 describe('AuthController', () => {
   let controller: AuthController;
+  let mockUsersService: jest.Mocked<UsersService>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
