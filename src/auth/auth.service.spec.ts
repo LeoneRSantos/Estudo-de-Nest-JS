@@ -10,7 +10,7 @@ describe('AuthService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [AuthService],
+      providers: [AuthService, PrismaService, JwtService, LocalStrategy, ConfigService],
     }).compile();
 
     service = module.get<AuthService>(AuthService);
