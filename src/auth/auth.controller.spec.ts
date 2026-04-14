@@ -36,7 +36,7 @@ describe('AuthController', () => {
     mockUsersService = module.get(UsersService);
   });
 
-  it('should be defined', () => {
+  it('Verificar a chamada do controller', () => {
     expect(controller).toBeDefined();
   });
 });
