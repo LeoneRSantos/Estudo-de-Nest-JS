@@ -13,6 +13,17 @@ describe('AuthController', () => {
   let mockUsersService: jest.Mocked<UsersService>;
 
   beforeEach(async () => {
+    // Mock do PrismaService
+    const mockPrismaService = {
+      user: {
+        findMany: jest.fn(),
+      },
+    };
+    // Mock do ConfigService (se necessário para Prisma)
+    const mockConfigServiceValue = {
+      get: jest.fn().mockReturnValue('mocked-db-url'), // Simula DATABASE_URL
+    };
+
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AuthController],
     }).compile();
