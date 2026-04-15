@@ -10,6 +10,31 @@ jest.mock('bcrypt');
 
 describe('AuthService', () => {
   let service: AuthService;
+  let prismaService: PrismaService;
+  let jwtService: JwtService;
+
+  // Mock do bcrypt
+  jest.mock('bcrypt', () => ({
+    compare: jest.fn().mockResolvedValue(true),
+  }));
+
+  const mockPrismaService = {
+    user: {
+      findMany: jest.fn(),
+      findUnique: jest.fn<Promise<any>, [any]>(),
+    },
+  };
+
+
+  // Mock do ConfigService
+  const mockConfigService = {
+    get: jest.fn().mockReturnValue('mocked-db-url'),
+  };
+
+  // Mock do JwtService
+  const mockJwtService = {
+    signAsync: jest.fn().mockResolvedValue('mocked-jwt-token'),
+  };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
