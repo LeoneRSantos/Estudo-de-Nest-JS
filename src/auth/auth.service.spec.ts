@@ -38,7 +38,11 @@ describe('AuthService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [AuthService, PrismaService, JwtService, LocalStrategy, ConfigService],
+      providers: [AuthService, PrismaService, JwtService, LocalStrategy, ConfigService,
+        { provide: PrismaService, useValue: mockPrismaService },
+        { provide: ConfigService, useValue: mockConfigService },
+        { provide: JwtService, useValue: mockJwtService }
+      ],
     }).compile();
 
     service = module.get<AuthService>(AuthService);
