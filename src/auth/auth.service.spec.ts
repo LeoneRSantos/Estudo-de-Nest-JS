@@ -4,6 +4,9 @@ import { PrismaService } from '../database/prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import { LocalStrategy } from './local.strategy';
 import { ConfigService } from '@nestjs/config';
+import * as bcrypt from 'bcrypt';
+
+jest.mock('bcrypt');
 
 describe('AuthService', () => {
   let service: AuthService;
