@@ -54,7 +54,7 @@ describe('AuthService', () => {
     jest.clearAllMocks(); // Limpa mocks entre testes
   });
 
-  it('should be defined', () => {
+  it('Deve chamar o método', () => {
     expect(service).toBeDefined();
   });
 });
