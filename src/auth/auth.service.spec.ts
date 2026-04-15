@@ -57,4 +57,31 @@ describe('AuthService', () => {
   it('Deve chamar o método', () => {
     expect(service).toBeDefined();
   });
+
+  it('Deve retornar um token de autenticação válido', async () => {
+    const usuarioMock = {
+      id: 1,
+      email: 'usuario@emailvalido.com',
+      name: 'Usuário Teste',
+      password: 'senhadousuarioteste',
+    };
+
+    // Mock para findUnique
+    jest.spyOn(prismaService.user, 'findUnique').mockResolvedValueOnce(usuarioMock as any);
+
+    // Mock para bcrypt.compare (ajuste para evitar redefinição)
+    (bcrypt.compare as jest.Mock).mockResolvedValueOnce(true as any);
+
+    // Mock para jwtService.signAsync
+    jest.spyOn(jwtService, 'signAsync').mockResolvedValueOnce('token_mockado');
+
+    const resultado = await service.login({
+      email: usuarioMock.email,
+      password: usuarioMock.password,
+    });
+
+    expect(resultado).toHaveProperty('token');
+    expect((resultado as { token: string }).token).toBe('token_mockado');
+  });
+
 });
