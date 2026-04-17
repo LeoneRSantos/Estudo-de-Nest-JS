@@ -13,6 +13,13 @@ describe('AuthService', () => {
   let prismaService: PrismaService;
   let jwtService: JwtService;
 
+  const usuarioMock = {
+    id: 1,
+    email: 'usuario@emailvalido.com',
+    name: 'Usuário Teste',
+    password: 'senhadousuarioteste',
+  };
+
   // Mock do bcrypt
   jest.mock('bcrypt', () => ({
     compare: jest.fn().mockResolvedValue(true),
