@@ -104,6 +104,21 @@ describe('AuthService', () => {
     const resultado = await service.buscarUsuarioPorEmail(usuarioMock.email);
 
     expect(resultado).toBe(usuarioMock);
-  })
+  });
+
+  it('Deve-se validar uma senha', async () => {
+    jest.spyOn(prismaService.user, 'findUnique').mockResolvedValueOnce(usuarioMock as any);
+
+    // Mock para bcrypt.compare
+    (bcrypt.compare as jest.Mock).mockResolvedValueOnce(true as any);
+
+    const senhaTeste = 'senhadousuarioteste';
+
+    const usuarioDaSenha = await service.buscarUsuarioPorEmail(usuarioMock.email);
+
+    const resultado = await service.buscarSenha(senhaTeste, usuarioDaSenha?.password as string);
+
+    expect(resultado).toBe(true);
+  });
 
 });
