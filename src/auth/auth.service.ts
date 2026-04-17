@@ -34,7 +34,6 @@ export class AuthService {
             return { message: "Senha inválida" };
         }
 
-        const payload = { sub: usuario.id, username: usuario.name };
-        return { token: await this.jwtService.signAsync(payload) };
+        return { token: await this.jwtService.signAsync({ sub: usuario.id, username: usuario.name }) };
     }
 }
