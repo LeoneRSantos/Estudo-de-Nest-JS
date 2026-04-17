@@ -84,4 +84,26 @@ describe('AuthService', () => {
     expect((resultado as { token: string }).token).toBe('token_mockado');
   });
 
+  it('Deve retornar uma mensagem para usuário não encontrado', async () => {
+    const usuarioInexistente = {
+      email: 'usuarioqualquer@email.com',
+      password: 'qualquersenha',
+    }
+
+    // Mock para findUnique
+    jest.spyOn(prismaService.user, 'findUnique').mockResolvedValueOnce(usuarioMock as any);
+
+    const resultado = await service.buscarUsuarioPorEmail(usuarioInexistente.email);
+
+    expect(resultado).toBeNull();
+  });
+
+  it('Deve retornar um usuário encontrado', async () => {
+    jest.spyOn(prismaService.user, 'findUnique').mockResolvedValueOnce(usuarioMock as any);
+
+    const resultado = await service.buscarUsuarioPorEmail(usuarioMock.email);
+
+    expect(resultado).toBe(usuarioMock);
+  })
+
 });
