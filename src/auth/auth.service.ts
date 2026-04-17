@@ -9,11 +9,11 @@ import { JwtService } from '@nestjs/jwt';
 export class AuthService {
     constructor(private prisma: PrismaService, private jwtService: JwtService) { }
 
-    async buscarUsuarioPorEmail(email: string) {
+    async buscarUsuarioPorEmail(emailInserido: string) {
         const usuario = await this.prisma.user.findUnique({
-            where: { email: email },
+            where: { email: emailInserido },
         });
-        return usuario;
+        return usuario ? usuario : null;
     }
 
     async buscarSenha(senhaInserida: string, senhaArmazenada: string) {
