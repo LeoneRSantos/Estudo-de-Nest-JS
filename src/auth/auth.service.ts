@@ -24,7 +24,7 @@ export class AuthService {
         const usuario = await this.buscarUsuarioPorEmail(dados.email);
         console.log(usuario);
 
-        if (!usuario) {
+        if (usuario === null) {
             return { message: "Usuário não encontrado" };
         }
 
