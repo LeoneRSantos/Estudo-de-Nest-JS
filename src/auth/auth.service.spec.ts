@@ -69,7 +69,7 @@ describe('AuthService', () => {
     // Mock para findUnique
     jest.spyOn(prismaService.user, 'findUnique').mockResolvedValueOnce(usuarioMock as any);
 
-    // Mock para bcrypt.compare (ajuste para evitar redefinição)
+    // Mock para bcrypt.compare
     (bcrypt.compare as jest.Mock).mockResolvedValueOnce(true as any);
 
     // Mock para jwtService.signAsync
