@@ -11,8 +11,18 @@ export class AuthService {
 
     async buscarUsuarioPorEmail(email: string) {
         const usuario = await this.prisma.user.findUnique({
-            where: { email: dados.email },
+            where: { email: email },
         });
+        return usuario;
+    }
+
+    async buscarSenha(senhaInserida: string, senhaArmazenada: string) {
+        return await bcrypt.compare(senhaInserida, senhaArmazenada);
+    }
+
+    async login(dados: UserLoginInput): Promise<{ message: string } | { token: string }> {
+        const usuario = await this.buscarUsuarioPorEmail(dados.email);
+        console.log(usuario);
 
         if (!usuario) {
             return { message: "Usuário não encontrado" };
