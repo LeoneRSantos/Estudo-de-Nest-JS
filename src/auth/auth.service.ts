@@ -28,7 +28,7 @@ export class AuthService {
             return { message: "Usuário não encontrado" };
         }
 
-        const senhaValida = await bcrypt.compare(dados.password, usuario.password);
+        const senhaValida = await this.buscarSenha(dados.password, usuario.password);
 
         if (!senhaValida) {
             return { message: "Senha inválida" };
