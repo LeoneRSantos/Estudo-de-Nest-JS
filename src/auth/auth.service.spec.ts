@@ -66,12 +66,6 @@ describe('AuthService', () => {
   });
 
   it('Deve retornar um token de autenticação válido', async () => {
-    const usuarioMock = {
-      id: 1,
-      email: 'usuario@emailvalido.com',
-      name: 'Usuário Teste',
-      password: 'senhadousuarioteste',
-    };
 
     // Mock para findUnique
     jest.spyOn(prismaService.user, 'findUnique').mockResolvedValueOnce(usuarioMock as any);
