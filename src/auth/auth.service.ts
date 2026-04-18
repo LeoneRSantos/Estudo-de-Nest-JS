@@ -22,7 +22,7 @@ export class AuthService {
 
     async login(dados: UserLoginInput): Promise<{ message: string } | { token: string }> {
         const usuario = await this.buscarUsuarioPorEmail(dados.email);
-        console.log(usuario);
+
 
         if (usuario === null) {
             return { message: "Usuário não encontrado" };
@@ -31,7 +31,7 @@ export class AuthService {
         const senhaValida = await this.buscarSenha(dados.password, usuario.password);
 
         if (!senhaValida) {
-            return { message: "Senha inválida" };
+            return { message: "Senha incorreta" };
         }
 
         return { token: await this.jwtService.signAsync({ sub: usuario.id, username: usuario.name }) };
