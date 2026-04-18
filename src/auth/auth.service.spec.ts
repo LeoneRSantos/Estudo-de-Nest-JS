@@ -152,4 +152,17 @@ describe('AuthService', () => {
     expect(resultado).toHaveProperty('message');
   });
 
+  it('Deve-se retornar uma mensagem para senha incorreta', async () => {
+    jest.spyOn(service, 'buscarUsuarioPorEmail').mockResolvedValueOnce(usuarioMock);
+
+    const usuarioInexistente = {
+      email: 'usuarioInexistente@email.com',
+      password: 'usuarioInexistentesenha'
+    }
+
+    const resultado = await service.login(usuarioInexistente);
+
+    expect(resultado).toHaveProperty('message');
+  });
+
 });
