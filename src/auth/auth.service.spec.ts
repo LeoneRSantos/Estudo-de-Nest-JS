@@ -134,6 +134,22 @@ describe('AuthService', () => {
     const resultado = await service.buscarSenha(senhaTeste, usuarioDoBD?.password as string);
 
     expect(resultado).toBe(false);
-  })
+  });
+
+  it('Deve-se retornar uma mensagem para usuário não encontrado', async () => {
+    const usuarioInexistente = {
+      email: 'usuarioInexistente@email.com',
+      senha: 'senhainexistente'
+    }
+
+    jest.spyOn(prismaService.user, 'findUnique').mockResolvedValueOnce(usuarioMock);
+
+    const resultado = await service.login({
+      email: usuarioInexistente.email,
+      password: usuarioInexistente.senha
+    });
+
+    expect(resultado).toHaveProperty('message');
+  });
 
 });
