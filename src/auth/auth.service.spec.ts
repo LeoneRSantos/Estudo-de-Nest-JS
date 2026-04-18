@@ -85,7 +85,7 @@ describe('AuthService', () => {
     expect((resultado as { token: string }).token).toBe('token_mockado');
   });
 
-  it('Deve retornar uma mensagem para usuário não encontrado', async () => {
+  it('Deve retornar que um usuário não foi encontrado', async () => {
     const usuarioInexistente = {
       email: 'usuarioqualquer@email.com',
       password: 'qualquersenha',
