@@ -56,7 +56,6 @@ describe('UserService', () => {
 
     const emailExistente = 'usuario@emailvalido.com';
     const resultado = await service.verificarSeOEmailJaExiste(emailExistente);
-    console.log(resultado);
 
     expect(resultado).toEqual(mockUsers.at(0));
   });
