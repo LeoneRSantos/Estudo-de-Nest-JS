@@ -20,6 +20,12 @@ describe('AuthService', () => {
     password: 'senhadousuarioteste',
   };
 
+  const usuarioInexistente = {
+    email: 'usuarioInexistente@email.com',
+    password: 'senhainexistente'
+  }
+
+
   // Mock do bcrypt
   jest.mock('bcrypt', () => ({
     compare: jest.fn().mockResolvedValue(true),
