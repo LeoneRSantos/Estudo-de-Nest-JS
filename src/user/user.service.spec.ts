@@ -33,6 +33,10 @@ describe('UserService', () => {
     jest.clearAllMocks(); // Limpa mocks entre testes
   });
 
+  it('Deve definir o serviço', () => {
+    expect(service).toBeDefined();
+  });
+
   it('Deve validar e-mail válido e não existente', async () => {
     // Mock: users retorna lista vazia (e-mail não existe)
     jest.spyOn(service, 'users').mockResolvedValue([]);
