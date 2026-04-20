@@ -142,10 +142,7 @@ describe('AuthService', () => {
 
     jest.spyOn(service, 'buscarUsuarioPorEmail').mockResolvedValueOnce(null);
 
-    const resultado = await service.login({
-      email: usuarioInexistente.email,
-      password: usuarioInexistente.senha
-    });
+    const resultado = await service.login(usuarioInexistente);
 
     expect(resultado).toHaveProperty('message');
   });
