@@ -9,11 +9,7 @@ describe('UserService', () => {
   let prismaService: PrismaService;
 
   // Mock do PrismaService
-  const mockPrismaService = {
-    user: {
-      findMany: jest.fn(),
-    },
-  };
+  const mockPrismaService = createMockPrismaService('user');
 
   // Mock do ConfigService
   const mockConfigService = {
