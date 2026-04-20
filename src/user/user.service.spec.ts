@@ -51,8 +51,8 @@ describe('UserService', () => {
       { id: 1, email: 'usuario@emailvalido.com', name: 'Usuário Teste', password: 'senhadousuarioteste' },
     ];
 
-    // Mock direto no PrismaService
-    jest.spyOn(prismaService.user, 'findMany').mockResolvedValueOnce(mockUsers as any);
+    // Usa o helper para mockar findMany
+    mockFindMany(prismaService, 'user', mockUsers as any);
 
     const emailExistente = 'usuario@emailvalido.com';
     const resultado = await service.verificarSeOEmailJaExiste(emailExistente);
