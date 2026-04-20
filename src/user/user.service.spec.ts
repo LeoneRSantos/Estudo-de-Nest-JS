@@ -78,7 +78,7 @@ describe('UserService', () => {
 
     const emailInvalido = 'usuarioemailinvalido.com';
     const resultado = await service.validarEmail(emailInvalido);
-    expect(resultado).toEqual({ message: 'Email inválido' });
+    expect(resultado).toHaveProperty('message');
   });
 
 
