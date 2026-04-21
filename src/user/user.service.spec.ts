@@ -53,12 +53,12 @@ describe('UserService', () => {
     ];
 
     // Usa o helper para mockar findMany
-    mockFindMany(prismaService, 'user', mockUsers as any);
+    mockFindMany(prismaService, 'user', usuariosMock);
 
     const emailExistente = 'usuario@emailvalido.com';
     const resultado = await service.verificarSeOEmailJaExiste(emailExistente);
 
-    expect(resultado).toEqual(mockUsers.at(0));
+    expect(resultado).toEqual(usuariosMock.at(0));
   });
 
   it('Deve validar e-mail existente para o mesmo usuário (com id)', async () => {
