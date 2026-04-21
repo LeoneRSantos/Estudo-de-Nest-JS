@@ -48,9 +48,6 @@ describe('UserService', () => {
   });
 
   it('Deve retornar um e-mail existente de outro usuário', async () => {
-    const mockUsers = [
-      { id: 1, email: 'usuario@emailvalido.com', name: 'Usuário Teste', password: 'senhadousuarioteste' },
-    ];
 
     // Usa o helper para mockar findMany
     mockFindMany(prismaService, 'user', usuariosMock);
