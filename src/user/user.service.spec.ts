@@ -62,10 +62,8 @@ describe('UserService', () => {
   });
 
   it('Deve validar e-mail existente para o mesmo usuário (com id)', async () => {
-    // Mock: users retorna usuário com id correspondente
-    jest.spyOn(service, 'users').mockResolvedValue([
-      { id: 123, email: 'usuario@emailvalido.com', name: "Usuario Teste", password: 'senhadousuarioteste' },
-    ]);
+    // Mock do helpers
+    MockListarUsuarios(service, usuariosMock);
 
     const emailExistente = 'usuario@emailvalido.com';
     const resultado = await service.validarEmail(emailExistente, 123);
