@@ -71,8 +71,8 @@ describe('UserService', () => {
   });
 
   it('Deve retornar mensagem para e-mail inválido', async () => {
-    // Mock: users retorna lista vazia
-    jest.spyOn(service, 'users').mockResolvedValue([]);
+    // Mock do helpers
+    MockListarUsuarios(service, []);
 
     const emailInvalido = 'usuarioemailinvalido.com';
     const resultado = await service.validarEmail(emailInvalido);
