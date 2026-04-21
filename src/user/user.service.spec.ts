@@ -39,8 +39,8 @@ describe('UserService', () => {
   });
 
   it('Deve validar e-mail válido e não existente', async () => {
-    // Mock: users retorna lista vazia (e-mail não existe)
-    jest.spyOn(service, 'users').mockResolvedValue([]);
+    // Mock do helpers
+    MockListarUsuarios(service, []);
 
     const emailValido = 'usuario@emailvalido.com';
     const resultado = await service.verificarSeOEmailJaExiste(emailValido);
