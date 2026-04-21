@@ -105,3 +105,16 @@ export function mockDelete(
         .spyOn(prismaService[entity], 'delete')
         .mockResolvedValueOnce(data);
 }
+
+
+/**
+ * Configura um mock para retornar a lista de usuários
+ * @param servico - serviço a ser utilizado para acessar o método
+ * @param listaSimulada - lista simulada, que pode ser retornada vazia ou com um usuário
+ */
+export function MockListarUsuarios(
+    servico: any,
+    listaSimulada: any
+) {
+    return jest.spyOn(servico, 'users').mockResolvedValueOnce(listaSimulada);
+}
