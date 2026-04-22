@@ -118,3 +118,8 @@ export function MockListarUsuarios(
 ) {
     return jest.spyOn(servico, 'users').mockResolvedValueOnce(listaSimulada);
 }
+
+// Mock do ConfigService
+export const mockConfigService = {
+    get: jest.fn().mockReturnValue('mocked-db-url'),
+};
