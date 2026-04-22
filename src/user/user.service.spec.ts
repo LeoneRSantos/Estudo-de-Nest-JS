@@ -12,11 +12,6 @@ describe('UserService', () => {
   // Mock do PrismaService
   const mockPrismaService = createMockPrismaService('user');
 
-  // Mock do ConfigService
-  const mockConfigService = {
-    get: jest.fn().mockReturnValue('mocked-db-url'),
-  };
-
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
