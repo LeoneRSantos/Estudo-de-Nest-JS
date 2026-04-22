@@ -1,58 +1,25 @@
-
-import { Injectable } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
+import { ConfigService } from '@nestjs/config';
+import { PostsService } from './post.service';
+import { createMockPrismaService, mockConfigService } from '../../test/mocks/prisma-helpers';
 import { PrismaService } from '../database/prisma/prisma.service';
-import { Post, Prisma } from '../generated/prisma/client';
 
-@Injectable()
-export class PostsService {
-  constructor(private prisma: PrismaService) { }
+describe('PostService', () => {
+  let service: PostsService;
+  const mockPrismaService = createMockPrismaService('post');
 
-  async post(
-    postWhereUniqueInput: Prisma.PostWhereUniqueInput,
-  ): Promise<Post | null> {
-    return this.prisma.post.findUnique({
-      where: postWhereUniqueInput,
-    });
-  }
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        PostsService,
+        { provide: ConfigService, useValue: mockConfigService },
+        { provide: PrismaService, useValue: mockPrismaService }],
+    }).compile();
 
-  async posts(params: {
-    skip?: number;
-    take?: number;
-    cursor?: Prisma.PostWhereUniqueInput;
-    where?: Prisma.PostWhereInput;
-    orderBy?: Prisma.PostOrderByWithRelationInput;
-  }): Promise<Post[]> {
-    const { skip, take, cursor, where, orderBy } = params;
-    return this.prisma.post.findMany({
-      skip,
-      take,
-      cursor,
-      where,
-      orderBy,
-    });
-  }
+    service = module.get<PostsService>(PostsService);
+  });
 
-  async createPost(data: Prisma.PostCreateInput): Promise<Post> {
-    return this.prisma.post.create({
-      data,
-    });
-  }
-
-  async updatePost(params: {
-    where: Prisma.PostWhereUniqueInput;
-    data: Prisma.PostUpdateInput;
-  }): Promise<Post> {
-    const { data, where } = params;
-    return this.prisma.post.update({
-      data,
-      where,
-    });
-  }
-
-  async deletePost(where: Prisma.PostWhereUniqueInput): Promise<Post> {
-    return this.prisma.post.delete({
-      where,
-    });
-  }
-}
-
+  it('Deve-se definir o serviço', () => {
+    expect(service).toBeDefined();
+  });
+});
