@@ -46,4 +46,20 @@ describe('UserController', () => {
     expect(usuarios).toBeInstanceOf(Array);
     expect(mockUsersService.users).toHaveBeenCalledWith({}); // Verifica se o método foi chamado
   });
+
+  it('Deve ser possível cadastrar um usuário', async () => {
+    const usuario = {
+      email: usuariosMock.at(0)?.email as string,
+      name: usuariosMock.at(0)?.name as string,
+      password: usuariosMock.at(0)?.password as string
+    };
+
+    // Mock o retorno do serviço
+    mockUsersService.createUser.mockResolvedValueOnce(usuario as any);
+
+    const resultado = await controller.cadastrarUsuario(usuario);
+
+    expect(resultado).toEqual(usuario);
+    expect(mockUsersService.createUser).toHaveBeenCalledWith(usuario);
+  });
 });
