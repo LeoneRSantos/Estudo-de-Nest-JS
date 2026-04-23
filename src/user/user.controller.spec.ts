@@ -33,6 +33,12 @@ describe('UserController', () => {
 
     controller = module.get<UserController>(UserController);
     mockUsersService = module.get(UsersService);
+    prismaService = module.get<PrismaService>(PrismaService);
+    userService = module.get<UsersService>(UsersService);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   it('Deve ser possível retornar a lista de usuários', async () => {
