@@ -83,4 +83,24 @@ describe('UserService', () => {
     const resultado = await service.validarSenha(senha);
     expect(resultado).toHaveProperty('message');
   });
+
+  it('Deve ser possível cadastrar um usuário', async () => {
+    MockListarUsuarios(service, []);
+
+    const usuario = {
+      email: usuariosMock.at(0)?.email as string,
+      name: usuariosMock.at(0)?.name as string,
+      password: usuariosMock.at(0)?.password as string
+    };
+
+    // Mock o método create para retornar o usuário
+    jest.spyOn(prismaService.user, 'create').mockResolvedValueOnce(usuario as any);
+
+    const resultado = await service.createUser(usuario);
+
+    expect(resultado).toEqual(usuario);
+    expect(prismaService.user.create).toHaveBeenCalledWith({
+      data: usuario
+    });
+  });
 });
