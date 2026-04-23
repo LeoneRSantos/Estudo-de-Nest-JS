@@ -63,18 +63,6 @@ export class AppController {
         });
     }
 
-    @Post('user')
-    async signupUser(
-        @Body() userData: { name: string; email: string, password: string },
-    ): Promise<UserModel> {
-
-        const result = await this.userService.createUser(userData);
-        if ('message' in result) {
-            throw new Error(result.message);
-        }
-        return result;
-    }
-
     @Put('publish/:id')
     async publishPost(@Param('id') id: string): Promise<PostModel> {
         return this.postService.updatePost({

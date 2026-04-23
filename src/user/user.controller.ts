@@ -34,4 +34,15 @@ export class UserController {
         return this.userService.deleteUser({ id: Number(idUsuario) });
     }
 
+    @Post('user')
+    async cadastrarUsuario(
+        @Body() userData: { name: string; email: string, password: string },
+    ): Promise<UserModel> {
+
+        const result = await this.userService.createUser(userData);
+        if ('message' in result) {
+            throw new Error(result.message);
+        }
+        return result;
+    }
 }
