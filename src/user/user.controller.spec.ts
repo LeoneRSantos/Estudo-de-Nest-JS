@@ -20,11 +20,7 @@ describe('UserController', () => {
     // Mock do UsersService
     const mockUsersServiceValue = {
       users: jest.fn().mockResolvedValue([]), // Simula retorno de array vazio
-    };
-
-    // Mock do ConfigService (se necessário para Prisma)
-    const mockConfigServiceValue = {
-      get: jest.fn().mockReturnValue('mocked-db-url'), // Simula DATABASE_URL
+      createUser: jest.fn()
     };
 
     const module: TestingModule = await Test.createTestingModule({
