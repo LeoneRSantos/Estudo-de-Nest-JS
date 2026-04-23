@@ -2,6 +2,9 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from './user.controller';
 import { ConfigService } from '@nestjs/config';
 import { UsersService } from './user.service';
+import { usuariosMock } from '../../test/mocks/usuarios-helpers';
+import { PrismaService } from '../database/prisma/prisma.service';
+import { createMockPrismaService } from '../../test/mocks/prisma-helpers';
 
 describe('UserController', () => {
   let controller: UserController;
