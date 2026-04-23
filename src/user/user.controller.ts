@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { UserDeletedOutput, UserModel } from '../generated/prisma/models';
 import { UsersService } from './user.service';
