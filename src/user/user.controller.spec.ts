@@ -27,8 +27,7 @@ describe('UserController', () => {
       controllers: [UserController],
       providers: [
         { provide: UsersService, useValue: mockUsersServiceValue },
-        { provide: ConfigService, useValue: mockConfigServiceValue },
-        // PrismaService pode ser omitido se não for diretamente usado no controller
+        { provide: PrismaService, useValue: mockPrismaService }
       ],
     }).compile();
 
