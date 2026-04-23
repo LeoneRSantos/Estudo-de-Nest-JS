@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from './user.controller';
-import { ConfigService } from '@nestjs/config';
 import { UsersService } from './user.service';
 import { usuariosMock } from '../../test/mocks/usuarios-helpers';
 import { PrismaService } from '../database/prisma/prisma.service';
