@@ -9,6 +9,12 @@ import { createMockPrismaService } from '../../test/mocks/prisma-helpers';
 describe('UserController', () => {
   let controller: UserController;
   let mockUsersService: jest.Mocked<UsersService>;
+  let prismaService: PrismaService;
+  let userService: UsersService;
+
+  // Mock do PrismaService
+  const mockPrismaService = createMockPrismaService('user');
+
 
   beforeEach(async () => {
     // Mock do UsersService
