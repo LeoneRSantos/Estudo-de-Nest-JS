@@ -90,11 +90,11 @@ describe('UserService', () => {
     // Mock o método create para retornar o usuário
     jest.spyOn(prismaService.user, 'create').mockResolvedValueOnce(usuarioMock as any);
 
-    const resultado = await service.createUser(usuario);
+    const resultado = await service.createUser(usuarioMock);
 
-    expect(resultado).toEqual(usuario);
+    expect(resultado).toEqual(usuarioMock);
     expect(prismaService.user.create).toHaveBeenCalledWith({
-      data: usuario
+      data: usuarioMock
     });
   });
 });
