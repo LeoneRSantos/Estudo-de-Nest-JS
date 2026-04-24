@@ -69,7 +69,6 @@ export class UsersService {
     async createUser(data: Prisma.UserCreateInput): Promise<User | { message: string }> {
 
         const evalida = await this.validarSenha(data.password);
-        // const evalida = await bcrypt.compare(data.password, hash);
         const emailExiste = await this.validarEmail(data.email);
 
         if ("hash" in evalida) {
