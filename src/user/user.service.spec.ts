@@ -87,14 +87,8 @@ describe('UserService', () => {
   it('Deve ser possível cadastrar um usuário', async () => {
     MockListarUsuarios(service, []);
 
-    const usuario = {
-      email: usuariosMock.at(0)?.email as string,
-      name: usuariosMock.at(0)?.name as string,
-      password: usuariosMock.at(0)?.password as string
-    };
-
     // Mock o método create para retornar o usuário
-    jest.spyOn(prismaService.user, 'create').mockResolvedValueOnce(usuario as any);
+    jest.spyOn(prismaService.user, 'create').mockResolvedValueOnce(usuarioMock as any);
 
     const resultado = await service.createUser(usuario);
 
