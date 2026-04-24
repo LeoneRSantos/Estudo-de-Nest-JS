@@ -5,6 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 import { LocalStrategy } from './local.strategy';
 import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
+import { usuarioInexistente, usuarioMock } from '../../test/mocks/usuarios-helpers';
 
 jest.mock('bcrypt');
 
@@ -12,19 +13,6 @@ describe('AuthService', () => {
   let service: AuthService;
   let prismaService: PrismaService;
   let jwtService: JwtService;
-
-  const usuarioMock = {
-    id: 1,
-    email: 'usuario@emailvalido.com',
-    name: 'Usuário Teste',
-    password: 'senhadousuarioteste',
-  };
-
-  const usuarioInexistente = {
-    email: 'usuarioInexistente@email.com',
-    password: 'senhainexistente'
-  }
-
 
   // Mock do bcrypt
   jest.mock('bcrypt', () => ({
@@ -83,7 +71,7 @@ describe('AuthService', () => {
     jest.spyOn(jwtService, 'signAsync').mockResolvedValueOnce('token_mockado');
 
     const resultado = await service.login({
-      email: usuarioMock.email,
+      email: usuarioMock.email as string,
       password: usuarioMock.password,
     });
 
