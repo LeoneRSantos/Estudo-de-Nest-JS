@@ -78,7 +78,7 @@ describe('UserService', () => {
     expect(resultado).toHaveProperty('hash');
   });
 
-  it('Deve ser possível retornar uma mensagem para senha inválida', async () => {
+  it('validarSenha() deve retornar uma mensagem para senha inválida', async () => {
     const senha = '1234';
     const resultado = await service.validarSenha(senha);
     expect(resultado).toHaveProperty('message');
