@@ -106,4 +106,14 @@ describe('UserService', () => {
 
     expect(resultado).toHaveProperty('message');
   });
+
+  it('createUser() deve retornar uma mensagem para senha inválida', async () => {
+    jest.spyOn(service, 'validarSenha').mockResolvedValueOnce({ message: '' });
+    jest.spyOn(service, 'validarEmail').mockResolvedValueOnce({ email: usuarioMock.email as string });
+
+    const resultado = await service.createUser(usuarioMock);
+
+    expect(resultado).toHaveProperty('message');
+
+  });
 });
