@@ -53,7 +53,7 @@ describe('UserService', () => {
     expect(resultado).toEqual(usuariosMock.at(0));
   });
 
-  it('Deve validar e-mail existente para o mesmo usuário (com id)', async () => {
+  it('validarEmail() deve validar e-mail existente para o mesmo usuário (com id)', async () => {
     // Mock do helpers
     MockListarUsuarios(service, usuariosMock);
 
