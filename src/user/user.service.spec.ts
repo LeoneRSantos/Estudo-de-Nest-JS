@@ -98,7 +98,7 @@ describe('UserService', () => {
     });
   });
 
-  it('Deve retornar uma mensagem em caso de e-mail inválido', async () => {
+  it('createUser() deve retornar uma mensagem em caso de e-mail inválido', async () => {
     jest.spyOn(service, 'validarSenha').mockResolvedValueOnce({ hash: 'hash' });
     jest.spyOn(service, 'validarEmail').mockResolvedValueOnce({ message: '' });
 
