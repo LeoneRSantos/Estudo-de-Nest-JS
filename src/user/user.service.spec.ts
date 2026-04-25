@@ -62,7 +62,7 @@ describe('UserService', () => {
     expect(resultado).toEqual({ email: emailExistente });
   });
 
-  it('Deve retornar mensagem para e-mail inválido', async () => {
+  it('validarEmail() deve retornar mensagem para e-mail inválido', async () => {
     // Mock do helpers
     MockListarUsuarios(service, []);
 
