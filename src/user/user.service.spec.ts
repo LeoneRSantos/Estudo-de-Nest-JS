@@ -72,7 +72,7 @@ describe('UserService', () => {
   });
 
 
-  it('Deve ser possível validar uma senha', async () => {
+  it('validarSenha() deve validar uma senha', async () => {
     const senha = '12345678910';
     const resultado = await service.validarSenha(senha);
     expect(resultado).toHaveProperty('hash');
