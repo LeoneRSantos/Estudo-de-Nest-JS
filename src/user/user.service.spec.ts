@@ -42,7 +42,7 @@ describe('UserService', () => {
     expect(resultado).toEqual(false);
   });
 
-  it('Deve retornar um e-mail existente de outro usuário', async () => {
+  it('verificarSeOEmailJaExiste() deve retornar um e-mail existente de outro usuário', async () => {
 
     // Usa o helper para mockar findMany
     mockFindMany(prismaService, 'user', usuariosMock);
