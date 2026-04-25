@@ -84,7 +84,7 @@ describe('UserService', () => {
     expect(resultado).toHaveProperty('message');
   });
 
-  it('Deve ser possível cadastrar um usuário', async () => {
+  it('createUser() deve cadastrar um usuário', async () => {
     MockListarUsuarios(service, []);
 
     // Mock o método create para retornar o usuário
