@@ -33,7 +33,7 @@ describe('UserService', () => {
     expect(service).toBeDefined();
   });
 
-  it('Deve validar e-mail válido e não existente', async () => {
+  it('verificarSeOEmailJaExiste() deve validar e-mail válido e não existente', async () => {
     // Mock do helpers
     MockListarUsuarios(service, []);
 
