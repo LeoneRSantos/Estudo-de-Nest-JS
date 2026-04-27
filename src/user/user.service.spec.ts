@@ -39,8 +39,8 @@ describe('UserService', () => {
 
     const resultado = await service.user({ email: usuarioMock.email });
 
-    expect(resultado).toBeDefined();
-    expect(prismaService.user.findUnique).toHaveBeenCalledWith({ where: usuarioMock });
+    expect(prismaService.user.findUnique).toHaveBeenCalledWith({ where: { email: usuarioMock.email } });
+    expect(resultado).toEqual(usuarioMock);
   });
 
   it('verificarSeOEmailJaExiste() deve validar e-mail válido e não existente', async () => {
