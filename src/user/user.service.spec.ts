@@ -33,6 +33,16 @@ describe('UserService', () => {
     expect(service).toBeDefined();
   });
 
+  // verificar se o método chama `prisma.user.findUnique` com o `where` correto
+  it('O findUnique do Prisma precisa ser chamado com o parâmetro certo', async () => {
+    mockFindUnique(prismaService, 'user', usuarioMock.email);
+
+    const resultado = await prismaService.user.findUnique({ where: usuarioMock })
+
+    expect(resultado).toBeDefined();
+    expect(prismaService.user.findUnique).toHaveBeenCalledWith({ where: usuarioMock });
+  });
+
   it('verificarSeOEmailJaExiste() deve validar e-mail válido e não existente', async () => {
     // Mock do helpers
     MockListarUsuarios(service, []);
