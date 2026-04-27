@@ -35,7 +35,7 @@ describe('UserService', () => {
 
   // verificar se o método chama `prisma.user.findUnique` com o `where` correto
   it('O findUnique do Prisma precisa ser chamado com o parâmetro certo', async () => {
-    mockFindUnique(prismaService, 'user', usuarioMock.email);
+    mockFindUnique(prismaService, 'user', usuarioMock);
 
     const resultado = await service.user(usuarioMock)
 
