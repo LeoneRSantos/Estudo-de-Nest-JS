@@ -37,7 +37,7 @@ describe('UserService', () => {
   it('O findUnique do Prisma precisa ser chamado com o parâmetro certo', async () => {
     mockFindUnique(prismaService, 'user', usuarioMock.email);
 
-    const resultado = await prismaService.user.findUnique({ where: usuarioMock })
+    const resultado = await service.user(usuarioMock)
 
     expect(resultado).toBeDefined();
     expect(prismaService.user.findUnique).toHaveBeenCalledWith({ where: usuarioMock });
