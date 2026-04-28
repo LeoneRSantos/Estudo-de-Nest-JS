@@ -65,6 +65,15 @@ describe('UserService', () => {
     expect(resultado).toBeNull();
   });
 
+  // findMany() retornar os usuários corretamente
+  it('findMany() deve retorar os usuários corretamente', async () => {
+    mockFindMany(prismaService, 'user', usuariosMock, true);
+
+    const resultado = await prismaService.user.findMany();
+
+    expect(resultado).toEqual(usuariosMock);
+  });
+
   it('verificarSeOEmailJaExiste() deve validar e-mail válido e não existente', async () => {
     // Mock do helpers
     MockListarUsuarios(service, []);
