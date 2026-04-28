@@ -53,6 +53,18 @@ describe('UserService', () => {
     expect(resultado).toEqual(usuarioMock);
   });
 
+  // Retornar `null` quando `findUnique` resolve com `null`
+  it('findUnique() precisa retornar null quando findUnique() não encontra usuário', async () => {
+    mockFindUnique(prismaService, 'user', null, true);
+
+    const email = usuarioInexistente.email as string;
+
+    const resultado = await service.user({ email: email });
+
+    expect(prismaService.user.findUnique).toHaveBeenCalled();
+    expect(resultado).toBeNull();
+  });
+
   it('verificarSeOEmailJaExiste() deve validar e-mail válido e não existente', async () => {
     // Mock do helpers
     MockListarUsuarios(service, []);
