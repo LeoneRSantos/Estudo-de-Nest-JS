@@ -43,6 +43,16 @@ describe('UserService', () => {
     expect(resultado).toEqual(usuarioMock);
   });
 
+  // Retornar usuário existente quando `findUnique` resolve com um objeto
+  it('findUnique() deve retornar um usuário existente quando resolve com um objeto', async () => {
+    mockFindUnique(prismaService, 'user', usuarioMock, true);
+
+    const resultado = await service.user({ email: usuarioMock.email });
+
+    expect(prismaService.user.findUnique).toHaveBeenCalled();
+    expect(resultado).toEqual(usuarioMock);
+  });
+
   it('verificarSeOEmailJaExiste() deve validar e-mail válido e não existente', async () => {
     // Mock do helpers
     MockListarUsuarios(service, []);
