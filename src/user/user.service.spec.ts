@@ -12,6 +12,12 @@ describe('UserService', () => {
   // Mock do PrismaService
   const mockPrismaService = createMockPrismaService('user');
 
+  const usuarioAtualizado = {
+    ...usuarioMock,
+    password: 'hashedPassword',
+    email: 'novoemail@email.com'
+  };
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
