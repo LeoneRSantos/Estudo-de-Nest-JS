@@ -162,12 +162,6 @@ describe('UserService', () => {
     jest.spyOn(service, 'validarEmail').mockResolvedValueOnce({ email: 'novoemail@email.com' });
     jest.spyOn(service, 'validarSenha').mockResolvedValueOnce({ hash: 'hashedPassword' });
 
-    const usuarioAtualizado = {
-      ...usuarioMock,
-      password: 'hashedPassword',
-      email: 'novoemail@email.com'
-    };
-
     jest.spyOn(prismaService.user, 'update').mockResolvedValueOnce(usuarioAtualizado as any);
 
     const resultado = await service.updateUser({ where: { id: usuarioMock.id }, data: usuarioAtualizado });
