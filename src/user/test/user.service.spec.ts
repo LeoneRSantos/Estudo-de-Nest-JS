@@ -79,6 +79,14 @@ describe('UserService', () => {
     expect(resultado).toHaveProperty('message');
   });
 
+  it('validarEmail() com e-mail diferente do ID passado', async () => {
+    MockListarUsuarios(service, usuariosMock);
+
+    const resultado = await service.validarEmail(usuariosMock.at(0)?.email as string, usuariosMock.at(1)?.id);
+
+    expect(resultado).toHaveProperty('message');
+  });
+
 
   it('validarSenha() deve validar uma senha', async () => {
     const senha = '12345678910';
