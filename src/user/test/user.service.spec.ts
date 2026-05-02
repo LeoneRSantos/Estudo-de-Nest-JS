@@ -5,14 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { createMockPrismaService, mockConfigService, mockFindMany, MockListarUsuarios } from '../../../test/mocks/prisma-helpers';
 import { usuarioMock, usuariosMock } from '../../../test/mocks/usuarios-helpers';
 
-/**
- * 
-### 6. `validarEmail()` e `verificarSeOEmailJaExiste()`
-- `validarEmail()` com email já usado por outro usuário diferente do `id` passado
-  - hoje o código retorna `{ email }` nesse caso; vale testar esse comportamento explícito
-- caso de email inválido sem `@` já está coberto, mas também dá para testar:
-  - email válido e não existente retorna `{ email }`
- */
+
 describe('UserService', () => {
   let service: UsersService;
   let prismaService: PrismaService;
