@@ -81,6 +81,14 @@ describe('UserService', () => {
     expect(resultado).toHaveProperty('message');
   });
 
+  it('validarEmail() deve retornar e-mail válido e não existente', async () => {
+    jest.spyOn(service, 'verificarSeOEmailJaExiste').mockResolvedValueOnce(false);
+
+    const resultado = await service.validarEmail(usuarioMock.email as string);
+
+    expect(resultado).toHaveProperty('email');
+    expect(resultado).toEqual({ email: usuarioMock.email });
+  });
 
   it('validarSenha() deve validar uma senha', async () => {
     const senha = '12345678910';
