@@ -57,6 +57,7 @@ export class UsersService {
             if (alguemjatemesseamail.id === id) {
                 return { email: emailRecebido };
             }
+            return { message: 'O e-mail já pertence a outro usuário do sistema.' }
         }
 
         if (!emailRecebido.includes('@')) {
