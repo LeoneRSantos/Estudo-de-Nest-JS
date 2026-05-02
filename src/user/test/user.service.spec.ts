@@ -58,8 +58,9 @@ describe('UserService', () => {
     // Mock do helpers
     MockListarUsuarios(service, usuariosMock);
 
-    const emailExistente = usuarioMock.email as string;
-    const resultado = await service.validarEmail(emailExistente, 123);
+    const emailExistente = usuariosMock.at(0)?.email as string;
+    const idExistente = usuariosMock.at(0)?.id;
+    const resultado = await service.validarEmail(emailExistente, idExistente);
     expect(resultado).toEqual({ email: emailExistente });
   });
 
