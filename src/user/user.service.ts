@@ -73,13 +73,13 @@ export class UsersService {
         const emailExiste = await this.validarEmail(data.email);
 
         if ("hash" in evalida) {
-            try {
-                if ("message" in emailExiste) {
-                    throw new InternalServerErrorException(emailExiste.message);
+            if ("message" in emailExiste) {
+                return { message: emailExiste.message };
+            }
 
-                }
-                data.password = evalida.hash;
-                return this.prisma.user.create({
+            data.password = evalida.hash;
+            try {
+                return await this.prisma.user.create({
                     data,
                 });
             } catch (error) {
