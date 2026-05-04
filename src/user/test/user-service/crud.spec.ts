@@ -127,4 +127,14 @@ describe('Testes de CRUD de UsersService', () => {
 
         expect(resultado.name).toEqual(nome);
     });
+
+    it('updateUser() deve lançar exceção de email inválido', async () => {
+        jest.spyOn(service, 'validarEmail').mockResolvedValueOnce({ message: 'email' });
+        jest.spyOn(service, 'validarSenha').mockResolvedValueOnce({ hash: 'hashedPassword' });
+
+        // No caso do rejects, o método precisa ser lançado junto com o expect
+        await expect(
+            service.updateUser({ where: { id: usuarioMock.id }, data: usuarioMock })
+        ).rejects.toThrow(InternalServerErrorException);
+    });
 })
