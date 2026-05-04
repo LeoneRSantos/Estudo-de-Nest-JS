@@ -88,7 +88,7 @@ export class UsersService {
 
         } else {
 
-            return { message: "Senha invalida" };
+            return { message: evalida.message };
         }
     }
 
