@@ -38,6 +38,10 @@ describe('Testes de métodos do Prisma para UsersService', () => {
         expect(prismaService.user.findUnique).toHaveBeenCalledWith({ where: { email: usuarioMock.email } });
         expect(resultado).toEqual(usuarioMock);
     });
+    // Definir o serviço
+    it('PrismaService deve ser definido', async () => {
+        expect(prismaService).toBeDefined();
+    });
 
     // Retornar usuário existente quando `findUnique` resolve com um objeto
     it('findUnique() deve retornar um usuário existente quando resolve com um objeto', async () => {
