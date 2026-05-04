@@ -4,19 +4,10 @@ import { PrismaService } from '../../../database/prisma/prisma.service';
 import { ConfigService } from '@nestjs/config';
 import { createMockPrismaService, mockConfigService, MockListarUsuarios } from '../../../../test/mocks/prisma-helpers';
 import { usuarioMock } from '../../../../test/mocks/usuarios-helpers';
+import { InternalServerErrorException } from '@nestjs/common';
 
 /**
- * ### 3. `updateUser()`
-- atualizar usuário com email[x] e senha válidos [x]
-  - mockar `validarEmail` e `validarSenha` para retornar `{ email }` e `{ hash }`
-  - verificar chamada em `prisma.user.update` com `data` transformado
-- erro de senha inválida
-  - mockar `validarSenha` para retornar `{ message: ... }`
-  - esperar `InternalServerErrorException`
-- erro de email inválido
-  - mockar `validarEmail` para retornar `{ message: ... }`
-  - esperar `InternalServerErrorException`
-
+ * 
 ### 4. `deleteUser()`
 - deletar com sucesso
   - mockar `prisma.user.delete` e verificar retorno `UserDeletedOutput`
