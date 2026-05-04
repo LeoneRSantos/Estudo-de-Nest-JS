@@ -137,4 +137,11 @@ describe('Testes de CRUD de UsersService', () => {
             service.updateUser({ where: { id: usuarioMock.id }, data: usuarioMock })
         ).rejects.toThrow(InternalServerErrorException);
     });
+
+    it('updateUser() deve lançar uma exceção para senha inválida', async () => {
+        jest.spyOn(service, 'validarEmail').mockResolvedValueOnce({ email: usuarioMock.email });
+        jest.spyOn(service, 'validarSenha').mockResolvedValueOnce({ message: '' });
+
+        await expect(service.updateUser({ where: { id: usuarioMock.id }, data: usuarioMock })).rejects.toThrow(InternalServerErrorException);
+    });
 })
