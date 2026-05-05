@@ -7,16 +7,7 @@ import { usuarioMock, usuariosMock } from '../../../../test/mocks/usuarios-helpe
 import { InternalServerErrorException } from '@nestjs/common';
 
 /**
- * 
-### 4. `deleteUser()`
-- deletar com sucesso
-  - mockar `prisma.user.delete` e verificar retorno `UserDeletedOutput`
-- passar `where` vazio / `undefined`
-  - esperar `InternalServerErrorException`
-- erro interno do Prisma
-  - mockar `prisma.user.delete` para lançar
-  - esperar `InternalServerErrorException`
-
+ *
 ### 5. `createUser()` (casos extras)
 - garantir retorno de mensagem genérica quando `prisma.user.create` lança
 - já há testes para senha inválida e email inválido, mas falta cobertura de exceção de persistência
