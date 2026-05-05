@@ -135,4 +135,18 @@ describe('Testes de CRUD de UsersService', () => {
 
         await expect(service.updateUser({ where: { id: usuarioMock.id }, data: usuarioMock })).rejects.toThrow(InternalServerErrorException);
     });
-})
+
+    it('deleteUser() deve deletar um usuário', async () => {
+        const usuario = usuariosMock.at(0);
+        jest.spyOn(prismaService.user, 'delete').mockResolvedValueOnce(usuario as any);
+
+        // Resultado não possui o campo 'password', por isso precisa quebrar o objeto
+        const resultado = await service.deleteUser({ id: usuario?.id });
+
+        expect(resultado).toEqual({
+            id: usuario?.id,
+            name: usuario?.name,
+            email: usuario?.email,
+        });
+    });
+});
