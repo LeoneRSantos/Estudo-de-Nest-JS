@@ -61,4 +61,14 @@ describe('UserController', () => {
     expect(resultado).toEqual(usuario);
     expect(mockUsersService.createUser).toHaveBeenCalledWith(usuario);
   });
+
+  it('atualizarUsuario() deve atualizar um usuário válido', async () => {
+    const usuario = usuariosMock.at(0);
+
+    mockUsersService.updateUser.mockResolvedValueOnce(usuario as any);
+
+    const resultado = await controller.atualizarUsuario(usuario?.id as any, usuario as any);
+
+    expect(resultado).toEqual(usuario);
+  });
 });
