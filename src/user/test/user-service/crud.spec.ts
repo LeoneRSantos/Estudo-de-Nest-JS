@@ -6,13 +6,6 @@ import { createMockPrismaService, mockConfigService, MockListarUsuarios } from '
 import { usuarioMock, usuariosMock } from '../../../../test/mocks/usuarios-helpers';
 import { InternalServerErrorException } from '@nestjs/common';
 
-/**
- *
-### 5. `createUser()` (casos extras)
-- garantir retorno de mensagem genérica quando `prisma.user.create` lança
-- já há testes para senha inválida e email inválido, mas falta cobertura de exceção de persistência
- */
-
 describe('Testes de CRUD de UsersService', () => {
     let service: UsersService;
     let prismaService: PrismaService;
