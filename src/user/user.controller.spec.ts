@@ -19,7 +19,8 @@ describe('UserController', () => {
     // Mock do UsersService
     const mockUsersServiceValue = {
       users: jest.fn().mockResolvedValue([]), // Simula retorno de array vazio
-      createUser: jest.fn()
+      createUser: jest.fn(),
+      updateUser: jest.fn(),
     };
 
     const module: TestingModule = await Test.createTestingModule({
