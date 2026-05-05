@@ -149,4 +149,11 @@ describe('Testes de CRUD de UsersService', () => {
             email: usuario?.email,
         });
     });
+
+    it('deleteUser() deve lançar uma exceção quando não encontrar o usuário', async () => {
+        const usuario = usuariosMock.at(0);
+        jest.spyOn(prismaService.user, 'delete').mockRejectedValueOnce(usuario);
+
+        await expect(service.deleteUser({ id: 1 })).rejects.toThrow(InternalServerErrorException);
+    });
 });
