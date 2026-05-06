@@ -51,12 +51,11 @@ describe('UserController', () => {
     expect(mockUsersService.users).toHaveBeenCalledWith({}); // Verifica se o método foi chamado
   });
 
-  it('Deve ser possível cadastrar um usuário', async () => {
-    const usuario = {
-      email: usuariosMock.at(0)?.email as string,
-      name: usuariosMock.at(0)?.name as string,
-      password: usuariosMock.at(0)?.password as string
-    };
+  it('cadastrarUsuario() deve cadastrar um usuário', async () => {
+
+    // Extrai name, email e password de usuarioMock
+    const { name, email, password } = usuarioMock;
+    const usuario = { name, email, password };
 
     // Mock o retorno do serviço
     mockUsersService.createUser.mockResolvedValueOnce(usuario as any);
