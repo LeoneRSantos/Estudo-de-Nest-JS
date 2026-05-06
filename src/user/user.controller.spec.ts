@@ -41,7 +41,11 @@ describe('UserController', () => {
     jest.clearAllMocks();
   });
 
-  it('Deve ser possível retornar a lista de usuários', async () => {
+  it('UserController deve ser definido', async () => {
+    expect(controller).toBeDefined();
+  });
+
+  it('listarUsuarios() deve retornar a lista de usuários', async () => {
     const usuarios = await controller.listarUsuarios();
     expect(usuarios).toBeInstanceOf(Array);
     expect(mockUsersService.users).toHaveBeenCalledWith({}); // Verifica se o método foi chamado
