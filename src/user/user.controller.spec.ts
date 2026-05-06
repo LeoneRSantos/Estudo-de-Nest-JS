@@ -66,6 +66,18 @@ describe('UserController', () => {
     expect(mockUsersService.createUser).toHaveBeenCalledWith(usuario);
   });
 
+  it('cadastrarUsuario() deve lançar um erro caso não consiga fazer o cadastro', async () => {
+    // Extrai name, email e password de usuarioMock
+    const { name, email, password } = usuarioMock;
+    const usuario = { name, email, password };
+
+    // Mock o retorno do serviço
+    mockUsersService.createUser.mockResolvedValueOnce({ message: '' });
+
+    await expect(controller.cadastrarUsuario(usuario)).rejects.toThrow(Error);
+    expect(userService.createUser).toHaveBeenLastCalledWith(usuario);
+  });
+
   it('atualizarUsuario() deve atualizar um usuário válido', async () => {
     const usuario = usuariosMock.at(0);
 
