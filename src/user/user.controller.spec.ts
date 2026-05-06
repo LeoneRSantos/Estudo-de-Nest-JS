@@ -79,12 +79,10 @@ describe('UserController', () => {
   });
 
   it('atualizarUsuario() deve atualizar um usuário válido', async () => {
-    const usuario = usuariosMock.at(0);
+    mockUsersService.updateUser.mockResolvedValueOnce(usuarioMock as any);
 
-    mockUsersService.updateUser.mockResolvedValueOnce(usuario as any);
+    const resultado = await controller.atualizarUsuario(usuarioMock.id as any, usuarioMock as any);
 
-    const resultado = await controller.atualizarUsuario(usuario?.id as any, usuario as any);
-
-    expect(resultado).toEqual(usuario);
+    expect(resultado).toEqual(usuarioMock);
   });
 });
