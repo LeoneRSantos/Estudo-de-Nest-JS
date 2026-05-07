@@ -80,7 +80,7 @@ describe('UserController', () => {
 
   it('cadastrarUsuario() deve retornar uma mensagem em caso de senha inválida', async () => {
     // Extrai name, email e password de usuarioMock
-    const { name, email, password } = usuarioMock;
+    const { name, email } = usuarioMock;
     const usuario = { name, email, password: '1456' };
 
     mockUsersService.validarSenha.mockResolvedValueOnce({ message: '' });
