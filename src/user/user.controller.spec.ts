@@ -78,7 +78,7 @@ describe('UserController', () => {
     expect(userService.createUser).toHaveBeenLastCalledWith(usuario);
   });
 
-  it('cadastrarUsuario() deve retornar uma mensagem em caso de senha inválida', async () => {
+  it('cadastrarUsuario() deve lançar um erro em caso de senha inválida', async () => {
     // Extrai name, email e password de usuarioMock
     const { name, email } = usuarioMock;
     const usuario = { name, email, password: '1456' };
