@@ -88,6 +88,15 @@ describe('UserController', () => {
     await expect(controller.cadastrarUsuario(usuario)).rejects.toThrow(Error);
   });
 
+  it('cadastrarUsuario() deve lançar um erro em caso de senha inválida', async () => {
+    const { name, password } = usuarioMock
+    const usuario = { name, email: 'emailinvalido', password };
+
+    mockUsersService.validarEmail.mockResolvedValueOnce({ message: '' });
+
+    await expect(controller.cadastrarUsuario(usuario)).rejects.toThrow(Error);
+  });
+
   it('atualizarUsuario() deve atualizar um usuário válido', async () => {
     mockUsersService.updateUser.mockResolvedValueOnce(usuarioMock as any);
 
