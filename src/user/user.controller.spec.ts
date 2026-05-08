@@ -106,4 +106,16 @@ describe('UserController', () => {
 
     expect(resultado).toEqual(usuarioMock);
   });
+
+  it('atualizarUsuario() deve atualizar a senha de um usuário', async () => {
+    const { id, name, email } = usuarioMock;
+    const usuario = { id, email, name, password: '12345678' }
+
+    mockUsersService.updateUser.mockResolvedValueOnce(usuario);
+
+    const resultado = await controller.atualizarUsuario(usuario.id as any, usuario);
+
+    expect(resultado).toEqual(usuario);
+    expect(resultado.password).toEqual(usuario.password);
+  });
 });
