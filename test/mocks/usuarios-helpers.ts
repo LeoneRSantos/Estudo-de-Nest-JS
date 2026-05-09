@@ -44,3 +44,12 @@ export const usuarioInexistente = {
     email: 'usuarioInexistente@email.com',
     password: 'senhainexistente'
 }
+
+// Mocks de métodos do UsersService
+export const mockUsersServiceValue = {
+    users: jest.fn().mockResolvedValue([]), // Simula retorno de array vazio
+    createUser: jest.fn(),
+    updateUser: jest.fn(),
+    validarSenha: jest.fn(),
+    validarEmail: jest.fn()
+};
