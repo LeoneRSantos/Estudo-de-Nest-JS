@@ -133,4 +133,15 @@ describe('UserController', () => {
     expect(resultado).toBe(usuario);
     expect(resultado.name).toEqual(usuario.name);
   });
+
+  it('deletarUsuario() deve deletar um usuário encontrado', async () => {
+    const { id, name, email } = usuarioMock;
+    const usuario = { id, name, email };
+    mockUsersService.deleteUser.mockResolvedValueOnce(usuario);
+
+    const resultado = await controller.deletarUsuario(usuario.id as any);
+
+    expect(mockUsersService.deleteUser).toHaveBeenCalledWith({ id: usuario.id });
+    expect(resultado).toEqual(usuario);
+  });
 });
