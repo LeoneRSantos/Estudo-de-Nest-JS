@@ -51,5 +51,6 @@ export const mockUsersServiceValue = {
     createUser: jest.fn(),
     updateUser: jest.fn(),
     validarSenha: jest.fn(),
-    validarEmail: jest.fn()
+    validarEmail: jest.fn(),
+    deleteUser: jest.fn()
 };
