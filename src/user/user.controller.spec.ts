@@ -144,4 +144,15 @@ describe('UserController', () => {
     expect(mockUsersService.deleteUser).toHaveBeenCalledWith({ id: usuario.id });
     expect(resultado).toEqual(usuario);
   });
+
+  it('deletarUsuario() deve retornar uma exceção em caso de usuário não encontrado.', async () => {
+    const { name, email } = usuarioMock;
+    const usuario = { id: 123, name, email }
+
+    mockUsersService.deleteUser.mockImplementationOnce(() => {
+      throw new InternalServerErrorException();
+    });
+
+    await expect(controller.deletarUsuario(usuario.id.toString())).rejects.toThrow(Error);
+  });
 });
