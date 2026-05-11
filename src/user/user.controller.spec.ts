@@ -4,6 +4,7 @@ import { UsersService } from './user.service';
 import { mockUsersServiceValue, usuarioMock } from '../../test/mocks/usuarios-helpers';
 import { PrismaService } from '../database/prisma/prisma.service';
 import { createMockPrismaService } from '../../test/mocks/prisma-helpers';
+import { InternalServerErrorException } from '@nestjs/common';
 
 describe('UserController', () => {
   let controller: UserController;
