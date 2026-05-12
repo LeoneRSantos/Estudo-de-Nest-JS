@@ -45,6 +45,13 @@ export const usuarioInexistente = {
     password: 'senhainexistente'
 }
 
+export function MockListarUsuarios(
+    servico: any,
+    listaSimulada: any
+) {
+    return jest.spyOn(servico, 'users').mockResolvedValueOnce(listaSimulada);
+}
+
 // Mocks de métodos do UsersService
 export const mockUsersServiceValue = {
     users: jest.fn().mockResolvedValue([]), // Simula retorno de array vazio
