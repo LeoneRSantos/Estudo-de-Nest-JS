@@ -2,8 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from '../user.service';
 import { PrismaService } from '../../database/prisma/prisma.service';
 import { ConfigService } from '@nestjs/config';
-import { createMockPrismaService, mockConfigService, mockFindMany, MockListarUsuarios } from '../../../test/mocks/prisma-helpers';
-import { usuarioMock, usuariosMock } from '../../../test/mocks/usuarios-helpers';
+import { createMockPrismaService, mockConfigService, mockFindMany } from '../../../test/mocks/prisma-helpers';
+import { MockListarUsuarios, usuarioMock, usuariosMock } from '../../../test/mocks/usuarios-helpers';
 
 
 describe('UserService', () => {
