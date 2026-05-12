@@ -101,6 +101,4 @@ describe('UserService', () => {
     const resultado = await service.validarSenha(senha);
     expect(resultado).toHaveProperty('message');
   });
-
-
 });
