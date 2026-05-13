@@ -59,10 +59,8 @@ describe('AuthService', () => {
     expect(service).toBeDefined();
   });
 
-  it('Deve retornar um token de autenticação válido', async () => {
-
-    // Mock para findUnique
-    jest.spyOn(prismaService.user, 'findUnique').mockResolvedValueOnce(usuarioMock as any);
+  it('login() deve retornar um token de autenticação válido', async () => {
+    mockFindUnique(prismaService, 'user', usuarioMock);
 
     // Mock para bcrypt.compare
     (bcrypt.compare as jest.Mock).mockResolvedValueOnce(true as any);
