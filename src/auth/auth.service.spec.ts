@@ -6,6 +6,7 @@ import { LocalStrategy } from './local.strategy';
 import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
 import { usuarioInexistente, usuarioMock } from '../../test/mocks/usuarios-helpers';
+import { createMockPrismaService, mockFindUnique } from '../../test/mocks/prisma-helpers';
 
 jest.mock('bcrypt');
 
