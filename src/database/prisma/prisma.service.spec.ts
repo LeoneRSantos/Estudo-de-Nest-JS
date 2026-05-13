@@ -16,7 +16,7 @@ describe('PrismaService', () => {
     service = module.get<PrismaService>(PrismaService);
   });
 
-  it('should be defined', () => {
+  it('PrismaService deve ser definido', () => {
     expect(service).toBeDefined();
   });
 });
