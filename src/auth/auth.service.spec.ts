@@ -79,6 +79,17 @@ describe('AuthService', () => {
     expect((resultado as { token: string }).token).toBe('token_mockado');
   });
 
+  it('login() deve retornar uma mensagem para usuário não encontrado', async () => {
+    jest.spyOn(service, 'buscarUsuarioPorEmail').mockResolvedValueOnce(null);
+
+    const resultado = await service.login({
+      email: usuarioMock.email as string,
+      password: usuarioMock.password,
+    });
+
+    expect(resultado).toHaveProperty('message');
+  });
+
   it('Deve retornar que um usuário não foi encontrado', async () => {
 
     // Mock para findUnique
