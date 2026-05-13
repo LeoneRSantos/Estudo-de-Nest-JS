@@ -19,13 +19,8 @@ describe('AuthService', () => {
     compare: jest.fn().mockResolvedValue(true),
   }));
 
-  const mockPrismaService = {
-    user: {
-      findMany: jest.fn(),
-      findUnique: jest.fn<Promise<any>, [any]>(),
-    },
-  };
-
+  // Mock do PrismaService
+  const mockPrismaService = createMockPrismaService('user');
 
   // Mock do ConfigService
   const mockConfigService = {
