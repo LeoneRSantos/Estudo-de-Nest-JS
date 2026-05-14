@@ -97,7 +97,7 @@ describe('AuthService', () => {
     expect(resultado).toHaveProperty('message');
   });
 
-  it('Deve retornar que um usuário não foi encontrado', async () => {
+  it('buscarUsuarioPorEmail() deve retornar nulo para usuário não encontrado', async () => {
 
     // Mock para findUnique
     jest.spyOn(prismaService.user, 'findUnique').mockResolvedValueOnce(null);
