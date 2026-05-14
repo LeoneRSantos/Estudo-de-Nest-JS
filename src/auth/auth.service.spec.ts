@@ -129,8 +129,8 @@ describe('AuthService', () => {
     expect(resultado).toBe(true);
   });
 
-  it('Deve-se invalidar uma senha', async () => {
-    jest.spyOn(prismaService.user, 'findUnique').mockResolvedValueOnce(usuarioMock);
+  it('buscarSenha() deve invalidar uma senha', async () => {
+    mockFindUnique(prismaService, 'user', usuarioMock);
 
     (bcrypt.compare as jest.Mock).mockResolvedValueOnce(false as any);
 
