@@ -100,7 +100,7 @@ describe('AuthService', () => {
   it('buscarUsuarioPorEmail() deve retornar nulo para usuário não encontrado', async () => {
 
     // Mock para findUnique
-    jest.spyOn(prismaService.user, 'findUnique').mockResolvedValueOnce(null);
+    mockFindUnique(prismaService, 'user', null);
 
     const resultado = await service.buscarUsuarioPorEmail(usuarioInexistente.email);
 
