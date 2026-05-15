@@ -14,11 +14,8 @@ describe('AuthController', () => {
 
   beforeEach(async () => {
     // Mock do PrismaService
-    const mockPrismaService = {
-      user: {
-        findMany: jest.fn(),
-      },
-    };
+    const mockPrismaService = createMockPrismaService('user');
+
     // Mock do ConfigService (se necessário para Prisma)
     const mockConfigServiceValue = {
       get: jest.fn().mockReturnValue('mocked-db-url'), // Simula DATABASE_URL
