@@ -7,6 +7,8 @@ import { PrismaService } from '../database/prisma/prisma.service';
 import { LocalStrategy } from './local.strategy';
 import { ConfigService } from '@nestjs/config';
 import { UsersService } from '../user/user.service';
+import { createMockPrismaService } from '../../test/mocks/prisma-helpers';
+import { usuarioMock } from '../../test/mocks/usuarios-helpers';
 
 describe('AuthController', () => {
   let controller: AuthController;
