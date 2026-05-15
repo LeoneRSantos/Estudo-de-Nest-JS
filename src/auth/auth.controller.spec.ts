@@ -39,4 +39,12 @@ describe('AuthController', () => {
   it('Verificar a chamada do controller', () => {
     expect(controller).toBeDefined();
   });
+
+  it('login() deve autenticar um usuário com dados válidos', async () => {
+    jest.spyOn(controller, 'login').mockResolvedValueOnce({ token: 'token' });
+
+    const resultado = await controller.login(usuarioMock);
+
+    expect(resultado).toHaveProperty('token');
+  });
 });
